@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Round-Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Round-Up</h1>
+        <a href="#food"><button>Get Food Recipes</button></a>
+        <a href="#drink"><button>Get Drink Recipes</button></a>
+    </header>
+
+    <main>
+        <section id="food">
+            <h2>Food Recipes</h2>
+            <form>
+                <label for="cuisines">Select a cuisine:</label>
+                <select name="cuisines" id="js-cuisines">
+                    <!-- Populate w/ JS, example: -->
+                    <option value="Thai">Thai</option>
+                </select>
+                <input type="submit" value="Get Recipes">
+            </form>
+            <div class="food-results">
+                <div id="food-list-display">
+                    <ul class="food-list">
+                        <!-- Populate w/ JS, example: -->
+                        <li><a href="#food-pick">Phad Thai</a></li>
+                    </ul>
+                </div>
+                <div id="food-pick">
+                    <!-- Populate w/ JS, example: -->
+                    <img class="food-image" src="thumbnail.jpg" alt="Food Selection">
+                    <ul class="food-ingredients">
+                        <li>Rice Noodle</li>
+                        <li>Peanuts</li>
+                    </ul>
+                    <p class="food-instructions"></p>
+                    <a href="">Youtube Link</a>
+                </div>
+            </div>
+        </section>
+        <section id="drink">
+            <h2>Drink Recipes</h2>
+            <form>
+                <label for="spirits">Select a cuisine:</label>
+                <select name="spirits" id="js-spirits">
+                    <!-- Populate w/ JS, example: -->
+                    <option value="Gin">Gin</option>
+                </select>
+                <input type="submit" value="Get Recipes">
+            </form>
+            <div class="drink-results">
+                <div id="drink-list-display">
+                    <ul class="drink-list">
+                        <!-- Populate w/ JS, example: -->
+                        <li><a href="#drink-pick">Gin Gimlet</a></li>
+                    </ul>
+                </div>
+                <div id="drink-pick">
+                    <!-- Populate w/ JS, example: -->
+                    <img class="drink-image" src="thumbnail.jpg" alt="Drink Selection">
+                    <ul class="drink-ingredients">
+                        <li>1 oz. Gin</li>
+                        <li>1 oz. Lime Juice</li>
+                    </ul>
+                    <p class="drink-glass">Preferred Glass: Rocks glass</p>
+                    <p class="drink-instructions"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
