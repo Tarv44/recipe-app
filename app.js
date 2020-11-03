@@ -5,14 +5,33 @@ const foodUrl = 'https://www.themealdb.com/api/json/v1/1/'
 
 const drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/'
 
+const spirits = ['Tequila', 'Vodka', 'Gin', 'Rum', 'Whiskey', 'Light Rum', 'Dark Rum', 'Spiced Rum', 'Bourbon', 'Blended whiskey', 'Irish Whiskey', 'Scotch', 'Sweet Vermouth', 'Dry Vermouth']
+
 /* ------------------------ GENERATE FUNCTIONS ---------------------------*/
 
 function generateOptionElement(option) {
     return `<option value="${option}">${option}</option>`
 }
 
+function generateIngredients(recipe) {
+    let ingredientList = ``
+    const ing = 'strIngredient'
+    const meas = 'strMeasure'
+    let c = 1
+    let curIng = ing + c
+    let curMeas= meas + c
+    while (recipe[curIng]) {
+        ingredientList += `<li>${recipe[curMeas]} ${recipe[curIng]}</li>`
+        c++
+        curIng = ing + c, curMeas = meas + c
+    } 
+    return ingredientList
+}
+
+/* ------ Food ------ */
+
 function generateFoodListElement(option) {
-    return `<li idMeal="${option.idMeal}"><a href="#food-pick">${option.strMeal}</a></li>`
+    return `<a href="#food-pick"><li idMeal="${option.idMeal}">${option.strMeal}</li></a>`
 }
 
 function generateCuisineOptions(response) {
@@ -37,21 +56,6 @@ function generateFoodList(response) {
     return recipeList
 }
 
-function generateIngredients(recipe) {
-    let ingredientList = ``
-    const ing = 'strIngredient'
-    const meas = 'strMeasure'
-    let c = 1
-    let curIng = ing + c
-    let curMeas= meas + c
-    while (recipe[curIng]) {
-        ingredientList += `<li>${recipe[curMeas]} ${recipe[curIng]}</li>`
-        c++
-        curIng = ing + c
-        curMeas = meas + c
-    } 
-    return ingredientList
-}
 
 function generateFoodRecipe(response) {
     const recipe = response.meals[0];
@@ -65,67 +69,42 @@ function generateFoodRecipe(response) {
             <a href="${recipe.strYoutube}">Video</a>`
 }
 
-
-/* ------------------------ EVENT HANDLERS ---------------------------*/
-
-/* ------ Food ------ */
-
-function handleCuisineSelect() {
-    //Creates event listener for cuisine submit.
-    console.log('handleCuisineSelect ran.')
-    $('#js-food-form').submit(event => {
-        event.preventDefault();
-        const cuisineChoice = $('#js-cuisines').val()
-        renderRecipeList(cuisineChoice, $('.food-list'))
-    })
-}
-
-function handleFoodSelect() {
-    //Creates click event listeners for list items in '.food-list'
-    console.log('handleFoodSelect ran.')
-    $('.food-list').on('click', 'li', function() {
-        const recipePick = $(this).attr('idMeal');
-        renderFoodPick(recipePick);
-    })
-}
-
 /* ------ Drink ------ */
 
-function handleSpiritSelect() {
-    //Creates event listener for spirit submit.
-    console.log('handleSpiritSelect ran.')
+function generateDrinkListElement(option) {
+    return `<a href="#drink-pick"><li idDrink="${option.idDrink}">${option.strDrink}</li></a>`
 }
 
-function handleDrinkSelect() {
-    //Creates click event listeners for list items in '.drink-list'
-    console.log('handleDrinkSelect ran.')
+function generateDrinkList(response) {
+    const recipes = response.drinks
+    let recipeList = ''
+
+    for(let i = 0; i < recipes.length; i++) {
+        recipeList += generateDrinkListElement(recipes[i])
+    }
+
+    return recipeList
 }
+
+function generateDrinkRecipe(response) {
+    const recipe = response.drinks[0];
+    const ingredients = generateIngredients(recipe)
+    return `<h3 class="food-title">${recipe.strDrink}</h3>
+            <img class="food-image" src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}">
+            <ul class="food-ingredients">
+                ${ingredients}
+            </ul>
+            <p class="drink-glass">Recommended Glass: ${recipe.strGlass}</p>
+            <p class="food-instructions">${recipe.strInstructions}</p>`
+            
+}
+
+
+
 
 
 
 /* ------------------------ RENDER FUNCTIONS ---------------------------*/
-
-function renderRecipeList(searchItem, location) {
-    console.log('renderRecipeList ran.')
-
-    const url = foodUrl + 'filter.php?a=' + searchItem
-
-    fetch(url)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error(response.statusText)
-        })
-        .then(responseJSON => generateFoodList(responseJSON))
-        .then(recipeList => {
-            location.empty()
-            location.append(recipeList)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-}
 
 /* ------ Food ------ */
 
@@ -149,6 +128,29 @@ function renderCuisines() {
         })
     
 }
+
+function renderFoodRecipeList(searchItem, location) {
+    console.log('renderRecipeList ran.')
+
+    const url = foodUrl + 'filter.php?a=' + searchItem
+
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText)
+        })
+        .then(responseJSON => generateFoodList(responseJSON))
+        .then(recipeList => {
+            location.empty()
+            location.append(recipeList)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
 
 function renderFoodPick(choice) {
     choice = choice.replaceAll(' ', '_')
@@ -177,7 +179,102 @@ function renderFoodPick(choice) {
 function renderSpirits() {
     //Renders spirit options
     console.log('renderSpirits ran.')
+    for (let i = 0; i < spirits.length; i++) {
+        $('#js-spirits').append(generateOptionElement(spirits[i]))
+    }
 }
+
+function renderDrinkRecipeList(searchItem, location) {
+    console.log('renderDrinkRecipeList ran.')
+
+    searchItem = searchItem.replaceAll(' ', '_')
+
+    const url = drinkUrl + 'filter.php?i=' + searchItem
+
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText)
+        })
+        .then(responseJSON => generateDrinkList(responseJSON))
+        .then(recipeList => {
+            location.empty()
+            location.append(recipeList)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+function renderDrinkPick(choice) {
+    choice = choice.replaceAll(' ', '_')
+    
+    const url = drinkUrl + 'lookup.php?i=' + choice
+
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText)
+        })
+        .then(responseJSON => generateDrinkRecipe(responseJSON))
+        .then(recipe => {
+            $('#drink-pick').empty();
+            $('#drink-pick').append(recipe);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+/* ------------------------ EVENT HANDLERS ---------------------------*/
+
+/* ------ Food ------ */
+
+function handleCuisineSelect() {
+    //Creates event listener for cuisine submit.
+    console.log('handleCuisineSelect ran.')
+    $('#js-food-form').submit(event => {
+        event.preventDefault();
+        const cuisineChoice = $('#js-cuisines').val()
+        renderFoodRecipeList(cuisineChoice, $('.food-list'))
+    })
+}
+
+function handleFoodSelect() {
+    //Creates click event listeners for list items in '.food-list'
+    console.log('handleFoodSelect ran.')
+    $('.food-list').on('click', 'li', function() {
+        const recipePick = $(this).attr('idMeal');
+        renderFoodPick(recipePick);
+    })
+}
+
+/* ------ Drink ------ */
+
+function handleSpiritSelect() {
+    //Creates event listener for spirit submit.
+    console.log('handleSpiritSelect ran.')
+    $('#js-drink-form').submit(event => {
+        event.preventDefault();
+        const spiritChoice = $('#js-spirits').val()
+        renderDrinkRecipeList(spiritChoice, $('.drink-list'))
+    })
+}
+
+function handleDrinkSelect() {
+    //Creates click event listeners for list items in '.drink-list'
+    console.log('handleDrinkSelect ran.')
+    $('.drink-list').on('click', 'li', function() {
+        const recipePick = $(this).attr('idDrink');
+        renderDrinkPick(recipePick);
+    })
+}
+
+
 
 
 function preparePage() {
