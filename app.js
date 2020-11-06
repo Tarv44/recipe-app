@@ -21,7 +21,12 @@ function generateIngredients(recipe) {
     let curIng = ing + c
     let curMeas= meas + c
     while (recipe[curIng]) {
-        ingredientList += `<li>${recipe[curMeas]} ${recipe[curIng]}</li>`
+        if (recipe[curMeas]) {
+            ingredientList += `<li>${recipe[curMeas]} ${recipe[curIng]}</li>`
+        } else {
+            ingredientList += `<li>${recipe[curIng]}</li>`
+        }
+        
         c++
         curIng = ing + c, curMeas = meas + c
     } 
@@ -52,7 +57,6 @@ function generateFoodList(response) {
     for(let i = 0; i < recipes.length; i++) {
         recipeList += generateFoodListElement(recipes[i])
     }
-
     return recipeList
 }
 
