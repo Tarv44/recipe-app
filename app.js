@@ -31,7 +31,7 @@ function generateIngredients(recipe) {
 /* ------ Food ------ */
 
 function generateFoodListElement(option) {
-    return `<li class="recipe-list-item" idMeal="${option.idMeal}">${option.strMeal}</li>`
+    return `<li><button class="recipe-list-item" idMeal="${option.idMeal}">${option.strMeal}</button></li>`
 }
 
 function generateCuisineOptions(response) {
@@ -66,13 +66,13 @@ function generateFoodRecipe(response) {
                 ${ingredients}
             </ul>
             <p class="recipe-instructions">${recipe.strInstructions}</p>
-            <a class="recipe-video" href="${recipe.strYoutube}">Video</a>`
+            <a href="${recipe.strYoutube}"><button class="recipe-video">Video</button></a>`
 }
 
 /* ------ Drink ------ */
 
 function generateDrinkListElement(option) {
-    return `<li class="recipe-list-item" idDrink="${option.idDrink}">${option.strDrink}</li>`
+    return `<li><button class="recipe-list-item" idDrink="${option.idDrink}">${option.strDrink}</button></li>`
 }
 
 function generateDrinkList(response) {
@@ -258,7 +258,7 @@ function handleCuisineSelect() {
 function handleFoodSelect() {
     //Creates click event listeners for list items in '.food-list'
     console.log('handleFoodSelect ran.')
-    $('.food-list').on('click', 'li', function() {
+    $('.food-list').on('click', 'button', function() {
         const recipePick = $(this).attr('idMeal');
         renderFoodPick(recipePick);
     })
@@ -279,7 +279,7 @@ function handleSpiritSelect() {
 function handleDrinkSelect() {
     //Creates click event listeners for list items in '.drink-list'
     console.log('handleDrinkSelect ran.')
-    $('.drink-list').on('click', 'li', function() {
+    $('.drink-list').on('click', 'button', function() {
         const recipePick = $(this).attr('idDrink');
         renderDrinkPick(recipePick);
     })

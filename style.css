@@ -1,11 +1,26 @@
 /* ------------- BASE STYLES -------------- */
 h2, h3 {
-    margin: 24px;
     text-align: center;
+}
+
+h2 {
+    margin: 24px;
+}
+
+h3 {
+    margin: 18px;
 }
 
 img {
     width: 100%;
+}
+
+ul {
+    margin: 0;
+}
+
+button {
+    background-color: white;
 }
 
 body {
@@ -106,19 +121,26 @@ select, input[type="submit"] {
     border-radius: 20px;
 }
 
+.recipe-ingredients {
+    margin-top: 1em;
+}
+
 #food {
     margin: 29px 0 43.5px 0;
+    padding-bottom: 24px;
+}
+
+#food-pick a {
+    align-self: center;
 }
 
 .recipe-video {
-    align-self: center;
     font-size: 21px;
     text-decoration: none;
     color: black;
     padding: .15em .3em;
     border: solid black 3px;
     border-radius: 12px;
-    margin-bottom: 24px;
 }
 
 #drink {
