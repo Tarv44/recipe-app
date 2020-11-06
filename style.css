@@ -1,0 +1,177 @@
+/* ------------- BASE STYLES -------------- */
+h2, h3 {
+    margin: 24px;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    width: 92%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+/* ------------- HEADER-------------- */
+
+header {
+    width: 100%;
+    height: 90vh;
+    margin: 29px 0;
+    border: solid black 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 45px;
+}
+
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.get-food {
+    margin-right: 18px;
+}
+
+/* ------------- MAIN -------------- */
+
+main {
+    width: 100%;
+}
+
+#food, #drink {
+    min-height: 100vh;
+    border: solid black 3px;
+    box-sizing: border-box;
+    width: 100%;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    display: block;
+    margin-bottom: 1em;
+}
+
+select, input[type="submit"] {
+    width: 60%;
+}
+
+.food-list, .drink-list {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.recipe-list-item {
+    border: solid black 3px;
+    display: inline-block;
+    margin: .5em .25em;
+    padding: .2em .4em;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#food-pick, #drink-pick {
+    padding: 0 .5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-image {
+    border: solid black 1px;
+    border-radius: 20px;
+}
+
+#food {
+    margin: 29px 0 43.5px 0;
+}
+
+.recipe-video {
+    align-self: center;
+    font-size: 21px;
+    text-decoration: none;
+    color: black;
+    padding: .15em .3em;
+    border: solid black 3px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+#drink {
+    margin-bottom: 29px;
+}
+
+
+
+
+
+
+/* -------------- ****** MEDIA QUERIES ****** -------------- */
+
+/* ------------- PHONE (Landscape) -------------- */
+
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3)
+and (orientation: landscape) { 
+
+}
+
+/* ------------- TABLET -------------- */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* ----------- DESKTOP ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}

@@ -31,7 +31,7 @@ function generateIngredients(recipe) {
 /* ------ Food ------ */
 
 function generateFoodListElement(option) {
-    return `<a href="#food-pick"><li idMeal="${option.idMeal}">${option.strMeal}</li></a>`
+    return `<li class="recipe-list-item" idMeal="${option.idMeal}">${option.strMeal}</li>`
 }
 
 function generateCuisineOptions(response) {
@@ -60,19 +60,19 @@ function generateFoodList(response) {
 function generateFoodRecipe(response) {
     const recipe = response.meals[0];
     const ingredients = generateIngredients(recipe)
-    return `<h3 class="food-title">${recipe.strMeal}</h3>
-            <img class="food-image" src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
-            <ul class="food-ingredients">
+    return `<h3 class="recipe-title">${recipe.strMeal}</h3>
+            <img class="recipe-image" src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+            <ul class="recipe-ingredients">
                 ${ingredients}
             </ul>
-            <p class="food-instructions">${recipe.strInstructions}</p>
-            <a href="${recipe.strYoutube}">Video</a>`
+            <p class="recipe-instructions">${recipe.strInstructions}</p>
+            <a class="recipe-video" href="${recipe.strYoutube}">Video</a>`
 }
 
 /* ------ Drink ------ */
 
 function generateDrinkListElement(option) {
-    return `<a href="#drink-pick"><li idDrink="${option.idDrink}">${option.strDrink}</li></a>`
+    return `<li class="recipe-list-item" idDrink="${option.idDrink}">${option.strDrink}</li>`
 }
 
 function generateDrinkList(response) {
@@ -89,13 +89,13 @@ function generateDrinkList(response) {
 function generateDrinkRecipe(response) {
     const recipe = response.drinks[0];
     const ingredients = generateIngredients(recipe)
-    return `<h3 class="food-title">${recipe.strDrink}</h3>
-            <img class="food-image" src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}">
-            <ul class="food-ingredients">
+    return `<h3 class="recipe-title">${recipe.strDrink}</h3>
+            <img class="recipe-image" src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}">
+            <ul class="recipe-ingredients">
                 ${ingredients}
             </ul>
-            <p class="drink-glass">Recommended Glass: ${recipe.strGlass}</p>
-            <p class="food-instructions">${recipe.strInstructions}</p>`
+            <p class="recipe-glass">Recommended Glass: ${recipe.strGlass}</p>
+            <p class="recipe-instructions">${recipe.strInstructions}</p>`
             
 }
 
@@ -168,6 +168,10 @@ function renderFoodPick(choice) {
         .then(recipe => {
             $('#food-pick').empty();
             $('#food-pick').append(recipe);
+            document.querySelector('#food-pick').scrollIntoView({ 
+                behavior: 'smooth' 
+              });
+            
         })
         .catch(err => {
             console.log(err);
@@ -224,6 +228,9 @@ function renderDrinkPick(choice) {
         .then(recipe => {
             $('#drink-pick').empty();
             $('#drink-pick').append(recipe);
+            document.querySelector('#drink-pick').scrollIntoView({ 
+                behavior: 'smooth' 
+              });
         })
         .catch(err => {
             console.log(err);
