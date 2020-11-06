@@ -168,9 +168,11 @@ function renderFoodPick(choice) {
         .then(recipe => {
             $('#food-pick').empty();
             $('#food-pick').append(recipe);
-            document.querySelector('#food-pick').scrollIntoView({ 
-                behavior: 'smooth' 
-              });
+            $('.recipe-image').on("load", function() {
+                document.querySelector('#food-pick').scrollIntoView({ 
+                    behavior: 'smooth' 
+                  }); 
+            });
             
         })
         .catch(err => {
@@ -228,9 +230,11 @@ function renderDrinkPick(choice) {
         .then(recipe => {
             $('#drink-pick').empty();
             $('#drink-pick').append(recipe);
-            document.querySelector('#drink-pick').scrollIntoView({ 
-                behavior: 'smooth' 
-              });
+            $('.recipe-image').on("load", function() {
+                document.querySelector('#drink-pick').scrollIntoView({ 
+                    behavior: 'smooth' 
+                  }); 
+            });
         })
         .catch(err => {
             console.log(err);
