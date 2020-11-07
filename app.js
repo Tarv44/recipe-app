@@ -65,10 +65,12 @@ function generateFoodRecipe(response) {
     const recipe = response.meals[0];
     const ingredients = generateIngredients(recipe)
     return `<h3 class="recipe-title">${recipe.strMeal}</h3>
-            <img class="recipe-image" src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
-            <ul class="recipe-ingredients">
-                ${ingredients}
-            </ul>
+            <div class="image-ingredient-wrapper">
+                <img class="recipe-image" src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+                <ul class="recipe-ingredients">
+                    ${ingredients}
+                </ul>
+            </div>
             <p class="recipe-instructions">${recipe.strInstructions}</p>
             <a href="${recipe.strYoutube}"><button class="recipe-video">Video</button></a>`
 }
@@ -94,10 +96,12 @@ function generateDrinkRecipe(response) {
     const recipe = response.drinks[0];
     const ingredients = generateIngredients(recipe)
     return `<h3 class="recipe-title">${recipe.strDrink}</h3>
-            <img class="recipe-image" src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}">
-            <ul class="recipe-ingredients">
-                ${ingredients}
-            </ul>
+            <div class="image-ingredient-wrapper">
+                <img class="recipe-image" src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}">
+                <ul class="recipe-ingredients">
+                    ${ingredients}
+                </ul>
+            </div>
             <p class="recipe-glass">Recommended Glass: ${recipe.strGlass}</p>
             <p class="recipe-instructions">${recipe.strInstructions}</p>`
             
@@ -237,7 +241,7 @@ function renderDrinkPick(choice) {
             $('.recipe-image').on("load", function() {
                 document.querySelector('#drink-pick').scrollIntoView({ 
                     behavior: 'smooth' 
-                  }); 
+                }); 
             });
         })
         .catch(err => {

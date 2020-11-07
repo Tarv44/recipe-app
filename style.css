@@ -70,11 +70,10 @@ main {
 }
 
 #food, #drink {
-    min-height: 100vh;
+    min-height: 95vh;
     border: solid black 3px;
     box-sizing: border-box;
     width: 100%;
-
 }
 
 form {
@@ -92,6 +91,15 @@ select, input[type="submit"] {
     width: 60%;
 }
 
+.recipe-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+
+
 .food-list, .drink-list {
     padding: 0;
     list-style: none;
@@ -107,11 +115,16 @@ select, input[type="submit"] {
     margin: .5em .25em;
     padding: .2em .4em;
     border-radius: 12px;
-    cursor: pointer;
 }
 
 #food-pick, #drink-pick {
     padding: 0 .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-ingredient-wrapper {
     display: flex;
     flex-direction: column;
 }
@@ -123,6 +136,7 @@ select, input[type="submit"] {
 
 .recipe-ingredients {
     margin-top: 1em;
+    padding-left: 20px;
 }
 
 #food {
@@ -154,13 +168,45 @@ select, input[type="submit"] {
 
 /* -------------- ****** MEDIA QUERIES ****** -------------- */
 
+@media only screen 
+and (min-device-width: 768px) {
+    .image-ingredient-wrapper {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 70%;
+    }
+
+    .recipe-image,
+    .recipe-ingredients {
+        flex: 1;
+    }
+
+    .recipe-image {
+        max-width: 50%;
+        margin-right: 6px;
+    }
+
+    .recipe-ingredients {
+        margin-left: 6px;
+    }
+
+    .recipe-instructions {
+        max-width: 80%;
+    }
+}
+
 /* ------------- PHONE (Landscape) -------------- */
 
 @media only screen 
 and (min-device-width: 375px) 
-and (max-device-width: 812px) 
+and (max-device-width: 768px) 
 and (-webkit-min-device-pixel-ratio: 3)
 and (orientation: landscape) { 
+    
+    
+
+    
 
 }
 
@@ -192,8 +238,14 @@ and (-webkit-min-device-pixel-ratio: 2) {
 
 /* ----------- DESKTOP ----------- */
 @media screen 
-  and (min-device-width: 1200px) 
+  and (min-device-width: 1024px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) { 
+}
+
+/* Keep at bottom */
+
+.no-min-height {
+    min-height: none;
 }
