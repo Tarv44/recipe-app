@@ -248,6 +248,6 @@ and (-webkit-min-device-pixel-ratio: 2) {
 
 /* Keep at bottom */
 
-.no-min-height {
-    min-height: none;
+.hidden {
+    display: none;
 }

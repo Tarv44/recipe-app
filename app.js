@@ -184,9 +184,11 @@ function renderFoodPick(choice) {
         })
         .then(responseJSON => generateFoodRecipe(responseJSON))
         .then(recipe => {
+            $('#food-pick').attr('style', 'display: none')
             $('#food-pick').empty();
             $('#food-pick').append(recipe);
             $('.recipe-image').on("load", function() {
+                $('#food-pick').removeAttr('style')
                 document.querySelector('#food-pick').scrollIntoView({ 
                     behavior: 'smooth' 
                   }); 
@@ -247,9 +249,11 @@ function renderDrinkPick(choice) {
         })
         .then(responseJSON => generateDrinkRecipe(responseJSON))
         .then(recipe => {
+            $('#drink-pick').attr('style', 'display: none')
             $('#drink-pick').empty();
             $('#drink-pick').append(recipe);
             $('.recipe-image').on("load", function() {
+                $('#drink-pick').removeAttr('style')
                 document.querySelector('#drink-pick').scrollIntoView({ 
                     behavior: 'smooth' 
                 }); 
