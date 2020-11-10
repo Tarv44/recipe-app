@@ -57,7 +57,9 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
+
 
 .get-food {
     margin-right: 18px;
@@ -124,14 +126,14 @@ select, input[type="submit"] {
     align-items: center;
 }
 
+
 .image-ingredient-wrapper {
     display: flex;
     flex-direction: column;
 }
 
 .recipe-image {
-    border: solid black 1px;
-    border-radius: 20px;
+    border: solid black 1px; 
 }
 
 .recipe-ingredients {

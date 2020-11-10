@@ -5,7 +5,7 @@ const foodUrl = 'https://www.themealdb.com/api/json/v1/1/'
 
 const drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/'
 
-const spirits = ['Tequila', 'Vodka', 'Gin', 'Rum', 'Whiskey', 'Light Rum', 'Dark Rum', 'Spiced Rum', 'Bourbon', 'Blended whiskey', 'Irish Whiskey', 'Scotch', 'Sweet Vermouth', 'Dry Vermouth']
+const spirits = ['Tequila', 'Vodka', 'Champagne', 'Gin', 'Rum', 'Whiskey', 'Light Rum', 'Dark Rum', 'Spiced Rum', 'Bourbon', 'Blended whiskey', 'Irish Whiskey', 'Scotch', 'Sweet Vermouth', 'Dry Vermouth']
 
 /* ------------------------ GENERATE FUNCTIONS ---------------------------*/
 
@@ -60,10 +60,20 @@ function generateFoodList(response) {
     return recipeList
 }
 
+function generateVideoButton(videoLink) {
+    let result = ``
+    if (videoLink.length > 0) {
+        result += `<a href="${videoLink}"><button class="recipe-video">Video</button></a>`
+    }
+    return result
+}
+
 
 function generateFoodRecipe(response) {
     const recipe = response.meals[0];
     const ingredients = generateIngredients(recipe)
+    const video = generateVideoButton(recipe.strYoutube)
+    
     return `<h3 class="recipe-title">${recipe.strMeal}</h3>
             <div class="image-ingredient-wrapper">
                 <img class="recipe-image" src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
@@ -72,7 +82,7 @@ function generateFoodRecipe(response) {
                 </ul>
             </div>
             <p class="recipe-instructions">${recipe.strInstructions}</p>
-            <a href="${recipe.strYoutube}"><button class="recipe-video">Video</button></a>`
+            ${video}`
 }
 
 /* ------ Drink ------ */
@@ -180,6 +190,7 @@ function renderFoodPick(choice) {
                 document.querySelector('#food-pick').scrollIntoView({ 
                     behavior: 'smooth' 
                   }); 
+                setTimeout( function() { window.location = '#food-pick' }, 500 );
             });
             
         })
@@ -256,7 +267,7 @@ function renderDrinkPick(choice) {
 function handleCuisineSelect() {
     //Creates event listener for cuisine submit.
     console.log('handleCuisineSelect ran.')
-    $('#js-food-form').submit(event => {
+    $('#js-food-form select').change(event => {
         event.preventDefault();
         const cuisineChoice = $('#js-cuisines').val()
         renderFoodRecipeList(cuisineChoice, $('.food-list'))
