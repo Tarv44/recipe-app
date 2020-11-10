@@ -288,7 +288,7 @@ function handleFoodSelect() {
 function handleSpiritSelect() {
     //Creates event listener for spirit submit.
     console.log('handleSpiritSelect ran.')
-    $('#js-drink-form').submit(event => {
+    $('#js-drink-form select').change(event => {
         event.preventDefault();
         const spiritChoice = $('#js-spirits').val()
         renderDrinkRecipeList(spiritChoice, $('.drink-list'))
