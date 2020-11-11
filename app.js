@@ -5,7 +5,25 @@ const foodUrl = 'https://www.themealdb.com/api/json/v1/1/'
 
 const drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/'
 
-const spirits = ['Tequila', 'Vodka', 'Champagne', 'Gin', 'Rum', 'Whiskey', 'Light Rum', 'Dark Rum', 'Spiced Rum', 'Bourbon', 'Blended whiskey', 'Irish Whiskey', 'Scotch', 'Sweet Vermouth', 'Dry Vermouth']
+const spirits = ['Tequila', 
+                'Vodka', 
+                'Champagne', 
+                'Gin', 
+                'Rum', 
+                'Whiskey', 
+                'Light Rum', 
+                'Dark Rum', 
+                'Spiced Rum', 
+                'Bourbon', 
+                'Blended whiskey', 
+                'Irish Whiskey', 
+                'Scotch', 
+                'Sweet Vermouth', 
+                'Dry Vermouth']
+            
+
+
+
 
 /* ------------------------ GENERATE FUNCTIONS ---------------------------*/
 
@@ -124,6 +142,18 @@ function generateDrinkRecipe(response) {
 
 /* ------------------------ RENDER FUNCTIONS ---------------------------*/
 
+function recipeUpdateActions(recipeElements, pick, image) {
+    $(pick).attr('style', 'display: none')
+    $(pick).empty();
+    $(pick).append(recipeElements);
+    $(image).on("load", function() {
+        $(pick).removeAttr('style')
+        document.querySelector(pick).scrollIntoView({ 
+            behavior: 'smooth' 
+          }); 
+    });
+}
+
 /* ------ Food ------ */
 
 function renderCuisines() {
@@ -183,19 +213,7 @@ function renderFoodPick(choice) {
             throw new Error(response.statusText)
         })
         .then(responseJSON => generateFoodRecipe(responseJSON))
-        .then(recipe => {
-            $('#food-pick').attr('style', 'display: none')
-            $('#food-pick').empty();
-            $('#food-pick').append(recipe);
-            $('.recipe-image').on("load", function() {
-                $('#food-pick').removeAttr('style')
-                document.querySelector('#food-pick').scrollIntoView({ 
-                    behavior: 'smooth' 
-                  }); 
-                setTimeout( function() { window.location = '#food-pick' }, 500 );
-            });
-            
-        })
+        .then(recipe => recipeUpdateActions(recipe, '#food-pick', '.recipe-image'))
         .catch(err => {
             console.log(err);
         })
@@ -248,23 +266,19 @@ function renderDrinkPick(choice) {
             throw new Error(response.statusText)
         })
         .then(responseJSON => generateDrinkRecipe(responseJSON))
-        .then(recipe => {
-            $('#drink-pick').attr('style', 'display: none')
-            $('#drink-pick').empty();
-            $('#drink-pick').append(recipe);
-            $('.recipe-image').on("load", function() {
-                $('#drink-pick').removeAttr('style')
-                document.querySelector('#drink-pick').scrollIntoView({ 
-                    behavior: 'smooth' 
-                }); 
-            });
-        })
+        .then(recipe => recipeUpdateActions(recipe, '#drink-pick', '.recipe-image'))
         .catch(err => {
             console.log(err);
         })
 }
 
 /* ------------------------ EVENT HANDLERS ---------------------------*/
+
+
+$(window).scroll(function() {
+    $('body').attr('style', `--scroll:${$(window).scrollTop() / ($('body').outerHeight() - $(window).innerHeight())}` )
+    $('#food').attr('style', `--scroll:${$('#food').scrollTop() / $('#food').outerHeight()}` )
+})
 
 /* ------ Food ------ */
 
