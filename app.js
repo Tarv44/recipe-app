@@ -53,8 +53,8 @@ function generateIngredients(recipe) {
 
 /* ------ Food ------ */
 
-function generateFoodListElement(option) {
-    return `<li><button class="recipe-list-item" idMeal="${option.idMeal}">${option.strMeal}</button></li>`
+function generateFoodListElement(option, delay) {
+    return `<li><button class="recipe-list-item" style="animation-delay:${delay}s" idMeal="${option.idMeal}">${option.strMeal}</button></li>`
 }
 
 function generateCuisineOptions(response) {
@@ -71,9 +71,12 @@ function generateFoodList(response) {
     
     const recipes = response.meals
     let recipeList = ''
+    const delayInc = 1/recipes.length
+    let delay = 0
 
     for(let i = 0; i < recipes.length; i++) {
-        recipeList += generateFoodListElement(recipes[i])
+        recipeList += generateFoodListElement(recipes[i], delay)
+        delay += delayInc
     }
     return recipeList
 }
@@ -105,16 +108,20 @@ function generateFoodRecipe(response) {
 
 /* ------ Drink ------ */
 
-function generateDrinkListElement(option) {
-    return `<li><button class="recipe-list-item" idDrink="${option.idDrink}">${option.strDrink}</button></li>`
+function generateDrinkListElement(option, delay) {
+    return `<li><button class="recipe-list-item" style="animation-delay:${delay}s" idDrink="${option.idDrink}">${option.strDrink}</button></li>`
 }
 
 function generateDrinkList(response) {
     const recipes = response.drinks
     let recipeList = ''
+    const delayInc = 1/recipes.length
+    let delay = 0
+
 
     for(let i = 0; i < recipes.length; i++) {
-        recipeList += generateDrinkListElement(recipes[i])
+        recipeList += generateDrinkListElement(recipes[i], delay)
+        delay += delayInc
     }
 
     return recipeList
@@ -277,7 +284,20 @@ function renderDrinkPick(choice) {
 
 $(window).scroll(function() {
     $('body').attr('style', `--scroll:${$(window).scrollTop() / ($('body').outerHeight() - $(window).innerHeight())}` )
-    $('#food').attr('style', `--scroll:${$('#food').scrollTop() / $('#food').outerHeight()}` )
+    let pageTop = $(document).scrollTop();
+    let downBottom = pageTop + ($(window).height()*.95);
+
+    if ($('#food').position().top  < downBottom){
+        $('#food').addClass("visible");
+        } else {
+        $('#food').removeClass("visible");
+    }
+
+    if ($('#drink').position().top  < downBottom){
+        $('#drink').addClass("visible");
+        } else {
+        $('#drink').removeClass("visible");
+    }
 })
 
 /* ------ Food ------ */
