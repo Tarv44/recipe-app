@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Round-Up</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="fade-in">
-        <h1 class="grow">Recipe Round-Up</h1>
-        <nav>
-            <a href="#food"><button class="get-food">Get Food Recipes</button></a>
-            <a href="#drink"><button>Get Drink Recipes</button></a>
-        </nav>
-        
+        <div class="header-container">
+            <h1 class="grow">Recipe Round-Up</h1>
+            <nav>
+                <a href="#food"><button class="nav-food nav-button">Food Recipes</button></a>
+                <a href="#drink"><button class="nav-button">Drink Recipes</button></a>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -21,62 +26,66 @@
         <!--------------------- Food Section ---------------------->
 
         <section id="food">
-            <div class="form-start">
-                <h2>Food Recipes</h2>
-                <form id="js-food-form">
-                    <label for="js-cuisines">Select a cuisine:</label>
-                    <select name="cuisines" id="js-cuisines">
-                        <!-- Populate w/ JS, example: -->
-                        <option disabled selected value> -- select an option -- </option>
-                        
-                    </select>
-                </form>
-            </div>
-            <div class="recipe-results">
-                <div id="food-list-display">
-                    <ul class="food-list">
-                        <!-- Populate w/ JS, example: -->
-                        
-                    </ul>
+            <div class="section-container">
+                <div class="form-start">
+                    <h2>Food Recipes</h2>
+                    <form id="js-food-form">
+                        <select name="cuisines" id="js-cuisines">
+                            <!-- Populate w/ JS, example: -->
+                            <option disabled selected value>Select a Cuisine</option>
+                            
+                        </select>
+                    </form>
                 </div>
-                <div id="food-pick">
-                    <!-- Populate w/ JS, example: -->
-                    
-                    
-                    
+                <div class="recipe-results">
+                    <div id="food-list-display">
+                        <ul class="food-list">
+                            <!-- Populate w/ JS, example: -->
+                            
+                        </ul>
+                    </div>
+                    <div id="food-pick">
+                        <!-- Populate w/ JS, example: -->
                         
-                    
-                    
-                    
+                        
+                        
+                            
+                        
+                        
+                        
+                    </div>
                 </div>
             </div>
+            
         </section>
 
 
         <!--------------------- Drink Section ---------------------->
 
         <section id="drink">
-            <div class="form-start">
-                <h2>Drink Recipes</h2>
-                <form id="js-drink-form">
-                    <label for="js-spirits">Select a cuisine:</label>
-                    <select name="spirits" id="js-spirits">
-                        <!-- Populate w/ JS, example: -->
-                        <option disabled selected value> -- select an option -- </option>
-    
-                    </select>
-                </form>
-            </div>
-            <div class="recipe-results">
-                <div id="drink-list-display">
-                    <ul class="drink-list">
-                        <!-- Populate w/ JS, example: -->
-                    </ul>
+            <div class="section-container">
+                <div class="form-start">
+                    <h2>Drink Recipes</h2>
+                    <form id="js-drink-form">
+                        <select name="spirits" id="js-spirits">
+                            <!-- Populate w/ JS, example: -->
+                            <option disabled selected value> Select a Spirit</option>
+        
+                        </select>
+                    </form>
                 </div>
-                <div id="drink-pick">
-                    <!-- Populate w/ JS, example: -->
+                <div class="recipe-results">
+                    <div id="drink-list-display">
+                        <ul class="drink-list">
+                            <!-- Populate w/ JS, example: -->
+                        </ul>
+                    </div>
+                    <div id="drink-pick">
+                        <!-- Populate w/ JS, example: -->
+                    </div>
                 </div>
             </div>
+            
         </section>
     </main>
 
