@@ -137,8 +137,10 @@ function generateDrinkRecipe(response) {
                     ${ingredients}
                 </ul>
             </div>
-            <p class="recipe-glass">Recommended Glass: ${recipe.strGlass}</p>
-            <p class="recipe-instructions">${recipe.strInstructions}</p>`
+            <div class="recipe-instructions">
+                <p class="recipe-glass">Recommended Glass: ${recipe.strGlass}</p>
+                <p>${recipe.strInstructions}</p>
+            </div>`
             
 }
 
@@ -154,10 +156,11 @@ function recipeUpdateActions(recipeElements, pick, image) {
     $(pick).empty();
     $(pick).append(recipeElements);
     $(image).on("load", function() {
-        $(pick).removeAttr('style')
+        $(pick).removeAttr('style');
         document.querySelector(pick).scrollIntoView({ 
             behavior: 'smooth' 
-          }); 
+        });
+        $(pick).addClass('visible');
     });
 }
 
