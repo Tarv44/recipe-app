@@ -84,7 +84,7 @@ function generateFoodList(response) {
 function generateVideoButton(videoLink) {
     let result = ``
     if (videoLink.length > 0) {
-        result += `<a href="${videoLink}"><button class="recipe-video">Video</button></a>`
+        result += `<a href="${videoLink}" target="_blank"><button class="recipe-video">Video</button></a>`
     }
     return result
 }
@@ -152,7 +152,7 @@ function generateDrinkRecipe(response) {
 /* ------------------------ RENDER FUNCTIONS ---------------------------*/
 
 function recipeUpdateActions(recipeElements, pick, image) {
-    $(pick).attr('style', 'display: none')
+    $(pick).removeClass('visible')
     $(pick).empty();
     $(pick).append(recipeElements);
     $(image).on("load", function() {

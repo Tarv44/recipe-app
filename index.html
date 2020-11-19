@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Round-Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet"
@@ -26,66 +27,60 @@
         <!--------------------- Food Section ---------------------->
 
         <section id="food">
-            <h2>Food Recipes</h2>
             <div class="section-container">
-                <div class="form-start">
-                    <form id="js-food-form">
-                        <select name="cuisines" id="js-cuisines">
-                            <!-- Populate w/ JS, example: -->
-                            <option disabled selected value>Select a Cuisine</option>
-                            
-                        </select>
-                    </form>
-                </div>
-                <div class="recipe-results">
-                    <div id="food-list-display">
-                        <ul class="food-list">
-                            <!-- Populate w/ JS, example: -->
-                            
-                        </ul>
+                <h2>Food Recipes</h2>
+                <div class="list-pick-container">
+                    <div class="form-list-container">
+                        <form id="js-food-form">
+                            <select name="cuisines" id="js-cuisines">
+                                <!-- Populate w/ JS, example: -->
+                                <option disabled selected value>Select a Cuisine</option>
+                                
+                            </select>
+                        </form>
+                        <div id="food-list-display">
+                            <ul class="food-list">
+                                <!-- Populate w/ JS, example: -->
+                                
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div id="food-pick">
                         <!-- Populate w/ JS, example: -->
-                        
-                        
-                        
-                            
-                        
-                        
-                        
+                     
                     </div>
                 </div>
-            </div>
-            
+            </div> 
         </section>
 
 
         <!--------------------- Drink Section ---------------------->
 
         <section id="drink">
-            <h2>Drink Recipes</h2>
             <div class="section-container">
-                <div class="form-start">
-                    <form id="js-drink-form">
-                        <select name="spirits" id="js-spirits">
-                            <!-- Populate w/ JS, example: -->
-                            <option disabled selected value> Select a Spirit</option>
-        
-                        </select>
-                    </form>
-                </div>
-                <div class="recipe-results">
-                    <div id="drink-list-display">
-                        <ul class="drink-list">
-                            <!-- Populate w/ JS, example: -->
-                        </ul>
+                <h2>Drink Recipes</h2>
+                <div class="list-pick-container">
+                    <div class="form-list-container">
+                        <form id="js-drink-form">
+                            <select name="spirits" id="js-spirits">
+                                <!-- Populate w/ JS, example: -->
+                                <option disabled selected value> Select a Spirit</option>
+            
+                            </select>
+                        </form>
+                        <div id="drink-list-display">
+                            <ul class="drink-list">
+                                <!-- Populate w/ JS, example: -->
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div id="drink-pick">
                         <!-- Populate w/ JS, example: -->
                     </div>
                 </div>
             </div>
-            
         </section>
     </main>
 

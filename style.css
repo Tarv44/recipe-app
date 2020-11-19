@@ -1,8 +1,18 @@
 
 
 /* ------------- BASE STYLES -------------- */
+
 html {
     scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    min-height: 300vh;
+}
+
+main {
+    height: 100%;
 }
 
 h1,
@@ -46,7 +56,6 @@ p {
 }
 
 
-
 img {
     width: 100%;
 }
@@ -62,6 +71,13 @@ button {
     border: none;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+
+
+
 body {
     margin: 0 auto;
     display: flex;
@@ -76,6 +92,7 @@ body {
 
 header {
     background-color: #B9D2B2;
+    background-image: url("banner-min.jpg");
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -101,7 +118,8 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+    align-items: center;
+    margin-top: 20px;
 }
 
 .nav-button {
@@ -113,9 +131,8 @@ nav {
     color: #fff;
 }
 
-.nav-food {
-    margin-top: 31px;
-    margin-bottom: 25px;
+nav a {
+    margin-bottom: 1em;
 }
 
 
@@ -134,17 +151,32 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#food:hover,
-#drink:hover {
-    animation-play-state: running;
+    padding: 1em 0;
 }
 
 .section-container {
     width: 90%;
+    height: 100%;
+}
+
+.list-pick-container {
+    width: 100%;
     border-top: 5px #fff solid;
     padding: 16px 0;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-list-container {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 form {
@@ -152,23 +184,12 @@ form {
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
-
-form > * {
-    display: block;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 }
 
 select {
     width: 100%;
     font-size: 20px;
-}
-
-.recipe-results {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
 }
 
 
@@ -197,6 +218,7 @@ select {
     align-items: center;
     border-top: 5px #fff solid;
     opacity: 0;
+    width: 100%;
 }
     
 
@@ -210,6 +232,11 @@ select {
 .image-ingredient-wrapper {
     display: flex;
     flex-direction: column;
+    box-sizing: inherit;
+}
+
+.image-ingredient-wrapper > * {
+    box-sizing: border-box;
 }
 
 .recipe-image {
@@ -236,9 +263,10 @@ select {
 .recipe-instructions {
     background-color: #fff;
     border-radius: 20px;
-    padding: 42px 36px;
+    padding: 24px 36px;
     line-height: 1.5em;
     margin-top: 1em;
+    box-sizing: border-box;
 }
 
 #food,
@@ -253,6 +281,7 @@ select {
 .recipe-video {
     padding: 10px 14px;
     font-size: 16px;
+
 }
 
 #drink,
@@ -323,74 +352,40 @@ select {
 
 @media only screen 
 and (min-device-width: 768px) {
+
+    select {
+        width: 50%;
+    }
+
     .image-ingredient-wrapper {
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        width: 70%;
+        width: 100%;
     }
 
     .recipe-image,
     .recipe-ingredients {
         flex: 1;
+        max-width: 48%;
     }
 
-    .recipe-image {
-        max-width: 50%;
-        margin-right: 6px;
-    }
-
-    .recipe-ingredients {
-        margin-left: 6px;
-    }
+  
 
     .recipe-instructions {
-        max-width: 80%;
+        width: 100%;
     }
 }
 
-/* ------------- PHONE (Landscape) -------------- */
-
 @media only screen 
-and (min-device-width: 375px)
-and (-webkit-min-device-pixel-ratio: 3)
-and (orientation: landscape) { 
-    
-}
+and (min-device-width: 1024px) {
 
-/* ------------- TABLET -------------- */
-@media only screen 
-and (min-device-width: 768px)
-and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 768px)
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 768px)
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* ----------- DESKTOP ----------- */
-@media screen 
-  and (min-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 2) { 
     h1 {
         font-size: 80px;
     }
 
-    header {
-        background-image: url('banner.jpg');
+    h2 {
+        align-self: flex-start;
     }
 
     .header-container {
@@ -401,7 +396,46 @@ and (-webkit-min-device-pixel-ratio: 2) {
     .nav-button {
         font-size: 30px;
     }
-}
 
+    .list-pick-container {
+        flex-flow: row nowrap;
+        align-items: stretch;
+    }
+    .list-pick-container > * {
+        flex: 1;
+    }
+
+    .form-list-container {
+        border-right: 5px #fff solid;
+        min-height: 85vh;
+    }
+
+    #food-pick, #drink-pick {
+        border-top: none;
+        padding: 0 .75em;
+    }
+
+    .recipe-title {
+        margin-top: 0;
+    }
+
+    
+    .recipe-ingredients {
+        font-size: 12px;
+        margin-top: 0;
+    }
+
+    .recipe-instructions {
+        font-size: 14px;
+    }
+
+    
+   
+
+    select {
+        width: 94%;
+    }
+
+}
 
 
