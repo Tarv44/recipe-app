@@ -67,7 +67,6 @@ function generateCuisineOptions(response) {
 }
 
 function generateFoodList(response) {
-    console.log('generateFoodList ran.')
     
     const recipes = response.meals
     let recipeList = ''
@@ -168,7 +167,6 @@ function recipeUpdateActions(recipeElements, pick, image) {
 
 function renderCuisines() {
     //Renders cuisine options
-    console.log('renderCuisines ran.')
     
     const url = foodUrl + 'list.php?a=list'
     
@@ -188,7 +186,6 @@ function renderCuisines() {
 }
 
 function renderFoodRecipeList(searchItem, location) {
-    console.log('renderRecipeList ran.')
 
     const url = foodUrl + 'filter.php?a=' + searchItem
 
@@ -233,15 +230,12 @@ function renderFoodPick(choice) {
 
 function renderSpirits() {
     //Renders spirit options
-    console.log('renderSpirits ran.')
     for (let i = 0; i < spirits.length; i++) {
         $('#js-spirits').append(generateOptionElement(spirits[i]))
     }
 }
 
 function renderDrinkRecipeList(searchItem, location) {
-    console.log('renderDrinkRecipeList ran.')
-
     searchItem = searchItem.replaceAll(' ', '_')
 
     const url = drinkUrl + 'filter.php?i=' + searchItem
@@ -284,30 +278,30 @@ function renderDrinkPick(choice) {
 
 /* ------------------------ EVENT HANDLERS ---------------------------*/
 
+function scrollFade() {
+    $(window).scroll(function() {
+        let pageTop = $(document).scrollTop();
+        let downBottom = pageTop + ($(window).height()*.95);
+    
+        if ($('#food').position().top  < downBottom){
+            $('#food').addClass("visible");
+            } else {
+            $('#food').removeClass("visible");
+        }
+    
+        if ($('#drink').position().top  < downBottom){
+            $('#drink').addClass("visible");
+            } else {
+            $('#drink').removeClass("visible");
+        }
+    })
+}
 
-$(window).scroll(function() {
-    $('body').attr('style', `--scroll:${$(window).scrollTop() / ($('body').outerHeight() - $(window).innerHeight())}` )
-    let pageTop = $(document).scrollTop();
-    let downBottom = pageTop + ($(window).height()*.95);
-
-    if ($('#food').position().top  < downBottom){
-        $('#food').addClass("visible");
-        } else {
-        $('#food').removeClass("visible");
-    }
-
-    if ($('#drink').position().top  < downBottom){
-        $('#drink').addClass("visible");
-        } else {
-        $('#drink').removeClass("visible");
-    }
-})
 
 /* ------ Food ------ */
 
 function handleCuisineSelect() {
     //Creates event listener for cuisine submit.
-    console.log('handleCuisineSelect ran.')
     $('#js-food-form select').change(event => {
         event.preventDefault();
         const cuisineChoice = $('#js-cuisines').val()
@@ -317,7 +311,6 @@ function handleCuisineSelect() {
 
 function handleFoodSelect() {
     //Creates click event listeners for list items in '.food-list'
-    console.log('handleFoodSelect ran.')
     $('.food-list').on('click', 'button', function() {
         const recipePick = $(this).attr('idMeal');
         renderFoodPick(recipePick);
@@ -328,7 +321,6 @@ function handleFoodSelect() {
 
 function handleSpiritSelect() {
     //Creates event listener for spirit submit.
-    console.log('handleSpiritSelect ran.')
     $('#js-drink-form select').change(event => {
         event.preventDefault();
         const spiritChoice = $('#js-spirits').val()
@@ -338,7 +330,6 @@ function handleSpiritSelect() {
 
 function handleDrinkSelect() {
     //Creates click event listeners for list items in '.drink-list'
-    console.log('handleDrinkSelect ran.')
     $('.drink-list').on('click', 'button', function() {
         const recipePick = $(this).attr('idDrink');
         renderDrinkPick(recipePick);
@@ -350,13 +341,13 @@ function handleDrinkSelect() {
 
 function preparePage() {
     //Runs event listenerers and populates drop-down lists
-    console.log('preparePage ran.')
     renderCuisines();
     renderSpirits();
     handleCuisineSelect();
     handleSpiritSelect();
     handleFoodSelect();
     handleDrinkSelect();
+    scrollFade();
 }
 
 $(preparePage)
